@@ -1,0 +1,42 @@
+<!--
+    "ISO-8859" hebrew (Aleph 224 E0) to Aleph.
+-->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+
+        function fromHexa(s) {
+			if ((s - '0'.charCodeAt(0)) <= 9) {
+				return s - '0'.charCodeAt(0);
+			}
+			return s - 'A'.charCodeAt(0) + 10;
+		}
+
+        function is8859Tx() {
+            var input = document.getElementById("text").value;
+            var output = "";
+            for (i = 0; i < input.length; ++ i) {
+			    if (input[i] == '=') {
+				    output += String.fromCharCode('א'.charCodeAt(0) + (input.charCodeAt(i+1) - 'E'.charCodeAt(0)) * 16 + fromHexa(input.charCodeAt(i+2)));
+				    i += 2;
+				}
+				else if (input[i] == '\n') {
+					output += "<br>";
+				}
+				else {
+					output += input[i];
+				}
+            }
+            document.getElementById("result").innerHTML = 
+                output;
+        }
+    </script>
+    Copy your walla's mail text
+    </br>
+    <textarea id="text"></textarea>
+    <button onclick="is8859Tx()">Translate</button>
+    <p id="result"></p>
+</body>
+</html>
