@@ -1,0 +1,32 @@
+<!--
+    hebrew to english.
+    point your chrome to file:///storage/emulated/0/hebTx.html for example
+    lost the original version. A simple kickoff.
+    TODO: fix on IE ;) but not relevant - it's only for mobile
+-->
+
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+    function hebTx() {
+        const eng = "qwertyuiop[]\asdfghjkl;'zxcvbnm,./'";
+        const heb = "/'קראטוןםפ][\שדגכעיחלךף,זסבהנמצתץ.'";
+
+        var input = document.getElementById("text").value;
+        var output = "";
+        for (i = 0; i < input.length; ++ i) {
+            var idx = heb.indexOf(input[i]);
+            output += (idx >= 0 ? eng.charAt(idx) : input[i]);
+        }
+        document.getElementById("result").innerHTML =
+            "Now copy this: <b>" + output + "</b>";
+    }
+</script>
+Switch to hebrew and enter your text
+</br>
+<input type="text" id="text" value="">
+<button onclick="hebTx()">Translate</button>
+<p id="result"></p>
+</body>
+</html>
