@@ -20,11 +20,27 @@
         const heb = "/'קראטוןםפ][\שדגכעיחלךף,זסבהנמצתץ.'";
 
         var input = document.getElementById("text").value;
+        let foundOne = false;
         var output = "";
         for (i = 0; i < input.length; ++ i) {
             var idx = heb.indexOf(input[i]);
-            output += (idx >= 0 ? eng.charAt(idx) : input[i]);
+            if (idx >= 0) {
+                foundOne = true;
+                output += eng.charAt(idx);
+            }
+            else {
+                output += input[i];
+            }
         }
+
+        if (!foundOne) {
+            output = "";
+            for (i = 0; i < input.length; ++ i) {
+                var idx = eng.indexOf(input[i]);
+                output += (idx >= 0 ? heb.charAt(idx) : input[i]);
+            }
+        }
+
         document.getElementById("result").innerHTML =
             "Now copy this: <b>" + output + "</b>";
     }
