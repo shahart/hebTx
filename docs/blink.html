@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Blinking feature using JavaScript </title>
+    <style>
+        #blink {
+            font-size: 160px;
+            font-weight: bold;
+            color: #2d38be;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="blink">יוסי, כאן יהודה 👋</p>
+    <script type="text/javascript">
+        var blink = document.getElementById('blink');
+        setInterval(function() {
+            blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
+        }, 300);
+
+        function blinkIt() {
+	        document.getElementById('blink').innerHTML = document.getElementById('input').value;
+	    }
+    </script>
+	<textarea id="input" rows="1">יוסי, כאן יהודה 👋</textarea>
+	<p>
+	<button onClick="blinkIt()">Blink</button>
+	<p>
+</body>
+</html>
