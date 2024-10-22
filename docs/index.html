@@ -1,57 +1,31 @@
 <!--
     hebrew to english.
     point your chrome to file:///storage/emulated/0/hebTx.html for example
+
     lost the original version. A simple kickoff.
     TODO: fix on IE ;) but not relevant - it's only for mobile
 -->
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'>
-    <link rel="shortcut icon" href="#">
-    <title>hebTx</title>
-</head>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'>
+        <link rel="shortcut icon" href="#">
+        <title>hebTx</title>
+    </head>
 <body>
-<script>
-    function hebTx() {
-        const eng = "qwertyuiop[]\asdfghjkl;'zxcvbnm,./'";
-        const heb = "/'קראטוןםפ][\שדגכעיחלךף,זסבהנמצתץ.'";
-
-        var input = document.getElementById("text").value;
-        let foundOne = false;
-        var output = "";
-        for (i = 0; i < input.length; ++ i) {
-            var idx = heb.indexOf(input[i]);
-            if (idx >= 0) {
-                foundOne = true;
-                output += eng.charAt(idx);
-            }
-            else {
-                output += input[i];
-            }
-        }
-
-        if (!foundOne) {
-            output = "";
-            for (i = 0; i < input.length; ++ i) {
-                var idx = eng.indexOf(input[i]);
-                output += (idx >= 0 ? heb.charAt(idx) : input[i]);
-            }
-        }
-
-        document.getElementById("result").innerHTML =
-            "Now copy this: <b>" + output + "</b>";
-    }
-</script>
-Switch to hebrew and enter your text
-</br>
-</br>
-<input type="text" id="text" value="">
-<button onclick="hebTx()">Translate</button>
-<p id="result"></p>
-</br>
-<img src="hebrew-keyb.jpg" width="30%">
+    <script src="script.js"></script>
+    Input text in hebrew and get "its" english, for example: ahtpkuxpkux is the result of שיאפלוספלוס
+    <br>
+    <br>
+    Switch to hebrew and enter your text
+    </br>
+    </br>
+    <input type="text" id="text" value="">
+    <button onclick="hebTx()">Translate</button>
+    <p id="result"></p>
+    </br>
+    <img src="hebrew-keyb.jpg" width="30%">
 </body>
 </html>
