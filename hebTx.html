@@ -7,27 +7,10 @@
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <body>
-    <script>
-        function hebTx() {
-            const eng = "qwertyuiop[]\asdfghjkl;'zxcvbnm,./'";
-            const heb = "/'קראטוןםפ][\שדגכעיחלךף,זסבהנמצתץ.'";
-
-            var input = document.getElementById("text").value;
-            var output = "";
-            for (i = 0; i < input.length; ++ i) {
-                var idx = heb.indexOf(input[i]);
-                output += (idx >= 0 ? eng.charAt(idx) : input[i]);
-            }
-            document.getElementById("result").innerHTML = 
-                "Now copy this: <b>" + output + "</b>";
-        }
-    </script>
-    Switch to hebrew and enter your text
-    </br>
-    <input type="text" id="text" value="">
-    <button onclick="hebTx()">Translate</button>
-    <p id="result"></p>
+    <a href="https://raw.githubusercontent.com/shahart/hebTx/refs/heads/master/docs/index.html">Current raw source</a>
+    <br/>
+    <a href="docs/index.html">Current source</a>
 </body>
 </html>

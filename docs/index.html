@@ -15,17 +15,26 @@
         <title>hebTx</title>
     </head>
 <body>
-    <script src="script.js"></script>
+<noscript>
+    <p style="color:red">JavaScript should be enabled!</p>
+</noscript>
+    <script src="hebTx.js"></script>
+    <script>
+        function doHebTx() {
+            let input = document.getElementById("text").value;
+            document.getElementById("result").innerHTML = "Now copy this: <b>" + window.hebTx(input) + "</b>";
+        }
+    </script>
     Input text in hebrew and get "its" english, for example: ahtpkuxpkux is the result of שיאפלוספלוס
     <br>
     <br>
     Switch to hebrew and enter your text
     </br>
     </br>
-    <input type="text" id="text" value="">
-    <button onclick="hebTx()">Translate</button>
+    <label for="text"></label><input type="text" id="text" value="">
+    <button onclick="doHebTx()" >Translate</button>
     <p id="result"></p>
     </br>
-    <img src="hebrew-keyb.jpg" width="30%">
+    <img src="hebrew-keyb.jpg" width="30%" alt="hebrew keyboard">
 </body>
 </html>
