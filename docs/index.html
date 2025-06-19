@@ -22,7 +22,13 @@
     <script>
         function doHebTx() {
             let input = document.getElementById("text").value;
-            document.getElementById("result").innerHTML = "Now copy this: <b>" + window.hebTx(input) + "</b>";
+            let result = window.hebTx(input);
+            document.getElementById("result").innerHTML = "Now copy this: <b>" + result + "</b>";
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(result).catch(function(err) {
+                    console.error('Could not copy text: ', err);
+                });
+            }
         }
     </script>
     Input text in hebrew and get "its" english, for example: ahtpkuxpkux is the result of שיאפלוספלוס
