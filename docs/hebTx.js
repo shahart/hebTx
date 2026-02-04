@@ -1,12 +1,12 @@
 function hebTx(input) {
-    var eng = "qwertyuiop[]\asdfghjkl;'zxcvbnm,./'";
-    var heb = "/'קראטוןםפ][\שדגכעיחלךף,זסבהנמצתץ.'";
+    var eng = "qwertyuiop[]\asdfghjkl;'zxcvbnm,./"; 
+    var heb = "/'קראטוןםפ][\שדגכעיחלךף,זסבהנמצתץ.";
     var output = '';
     var transFound = false;
     for (var i = 0; i < input.length; ++i) {
         var idx = heb.indexOf(input[i]);
         output += idx >= 0 ? eng.charAt(idx) : input[i];
-        transFound = transFound || idx >= 0;
+        transFound = transFound || (idx >= 0 && "/,.'[]".indexOf(input[i]) < 0);
     }
     if (! transFound) {
         output = '';

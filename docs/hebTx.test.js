@@ -10,7 +10,11 @@ describe('hebTx', () => {
   });
 
   test('single Hebrew letter', () => {
-    expect(hebTx('ש')).toBe('a'); // Adjust expected value as per your mapping
+    expect(hebTx('ת')).toBe(','); // Adjust expected value as per your mapping
+  });
+
+  test('single English letter', () => {
+    expect(hebTx(',')).toBe('ת');
   });
 
   test('multiple Hebrew letters', () => {
