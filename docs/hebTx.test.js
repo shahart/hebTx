@@ -21,8 +21,12 @@ describe('hebTx', () => {
     expect(hebTx('abcש')).toBe('abca'); // Adjust expected value as per your mapping
   });
 
+  test('multiple English letters', () => {
+    expect(hebTx('phru,thki')).toBe('פירותאילן');
+  });
+
   test('non-Hebrew input (English)', () => {
-    expect(hebTx('hello')).toBe('hello');
+    expect(hebTx('hello')).toBe('יקךךם');
   });
 
   test('numbers and symbols', () => {
