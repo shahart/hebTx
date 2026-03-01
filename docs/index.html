@@ -51,12 +51,31 @@
         <<
     </a>
     <script>
+        // Trigger translation on Enter key
         document.getElementById("text").addEventListener("keyup", function(event) {
             if (event.key === "Enter") {
                 event.preventDefault();
                 doHebTx();
             }
         });
+
+        // If URL has ?input=..., prefill and translate
+        (function () {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var initialInput = params.get("input");
+                if (initialInput !== null && initialInput !== "") {
+                    var textEl = document.getElementById("text");
+                    if (textEl) {
+                        textEl.value = initialInput;
+                        doHebTx();
+                    }
+                }
+            } catch (e) {
+                // Ignore URLSearchParams errors in very old browsers
+                console && console.error && console.error(e);
+            }
+        })();
     </script>
 </body>
 </html>
