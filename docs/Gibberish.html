@@ -1,0 +1,133 @@
+<!--
+// Translate to Hebrew from Western European/ OEM (OEM) Gibberish text.
+// This is the text that is used in Walla's mail system.  The text is in a Western European character set, but it is actually Hebrew text. This script will translate it to Hebrew.
+// Old, from ~2004. Might be solved today using choosing the correct encoding in the browser.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'>
+    <link rel="shortcut icon" href="#">
+    <title>Gibberish</title>
+</head>
+<body>
+<script>
+
+    function replaceSubstring(inputString, fromString, toString) {
+        // Goes through the inputString and replaces every occurrence of fromString with toString
+        var temp = inputString;
+        if (fromString == "") {
+            return inputString;
+        }
+        if (toString.indexOf(fromString) == -1) { // If the string being replaced is not a part of the replacement string (normal situation)
+            while (temp.indexOf(fromString) != -1) {
+                var toTheLeft = temp.substring(0, temp.indexOf(fromString));
+                var toTheRight = temp.substring(temp.indexOf(fromString)+fromString.length, temp.length);
+                temp = toTheLeft + toString + toTheRight;
+            }
+        } else { // String being replaced is part of replacement string (like "+" being replaced with "++") - prevent an infinite loop
+            var midStrings = new Array("~", "`", "_", "^", "#");
+            var midStringLen = 1;
+            var midString = "";
+            // Find a string that doesn't exist in the inputString to be used
+            // as an "inbetween" string
+            while (midString == "") {
+                for (var i=0; i < midStrings.length; i++) {
+                    var tempMidString = "";
+                    for (var j=0; j < midStringLen; j++) { tempMidString += midStrings[i]; }
+                    if (fromString.indexOf(tempMidString) == -1) {
+                    midString = tempMidString;
+                    i = midStrings.length + 1;
+                    }
+                }
+            } // Keep on going until we build an "inbetween" string that doesn't exist
+            // Now go through and do two replaces - first, replace the "fromString" with the "inbetween" string
+            while (temp.indexOf(fromString) != -1) {
+                var toTheLeft = temp.substring(0, temp.indexOf(fromString));
+                var toTheRight = temp.substring(temp.indexOf(fromString)+fromString.length, temp.length);
+                temp = toTheLeft + midString + toTheRight;
+            }
+            // Next, replace the "inbetween" string with the "toString"
+            while (temp.indexOf(midString) != -1) {
+                var toTheLeft = temp.substring(0, temp.indexOf(midString));
+                var toTheRight = temp.substring(temp.indexOf(midString)+midString.length, temp.length);
+                temp = toTheLeft + toString + toTheRight;
+            }
+        } // Ends the check to see if the string being replaced is part of the replacement string or not
+        return temp; // Send the updated string back to the user
+    } // Ends the "replaceSubstring" function
+
+    function hebTx() {
+
+        var sNewText = document.getElementById("text").value;
+
+        sNewText = replaceSubstring(sNewText,"à","א");
+        sNewText = replaceSubstring(sNewText,"á","ב");
+        sNewText = replaceSubstring(sNewText,"â","ג");
+        sNewText = replaceSubstring(sNewText,"ã","ד");
+        sNewText = replaceSubstring(sNewText,"ä","ה");
+        sNewText = replaceSubstring(sNewText,"å","ו");
+        sNewText = replaceSubstring(sNewText,"æ","ז");
+        sNewText = replaceSubstring(sNewText,"ç","ח");
+        sNewText = replaceSubstring(sNewText,"è","ט");
+        sNewText = replaceSubstring(sNewText,"é","י");
+        sNewText = replaceSubstring(sNewText,"ë","כ");
+        sNewText = replaceSubstring(sNewText,"ê","ך");
+        sNewText = replaceSubstring(sNewText,"ì","ל");
+        sNewText = replaceSubstring(sNewText,"î","מ");
+        sNewText = replaceSubstring(sNewText,"í","ם");
+        sNewText = replaceSubstring(sNewText,"ð","נ");
+        sNewText = replaceSubstring(sNewText,"ï","ן");
+        sNewText = replaceSubstring(sNewText,"ñ","ס");
+        sNewText = replaceSubstring(sNewText,"ò","ע");
+        sNewText = replaceSubstring(sNewText,"ô","פ");
+        sNewText = replaceSubstring(sNewText,"ó","ף");
+        sNewText = replaceSubstring(sNewText,"ö","צ");
+        sNewText = replaceSubstring(sNewText,"õ","ץ");
+        sNewText = replaceSubstring(sNewText,"÷","ק");
+        sNewText = replaceSubstring(sNewText,"ø","ר");
+        sNewText = replaceSubstring(sNewText,"ù","ש");
+        sNewText = replaceSubstring(sNewText,"ú","ת");
+
+        //OEM:
+        sNewText = replaceSubstring(sNewText,"α","א");
+        sNewText = replaceSubstring(sNewText,"ß","ב");
+        sNewText = replaceSubstring(sNewText,"Γ","ג");
+        sNewText = replaceSubstring(sNewText,"π","ד");
+        sNewText = replaceSubstring(sNewText,"Σ","ה");
+        sNewText = replaceSubstring(sNewText,"σ","ו");
+        sNewText = replaceSubstring(sNewText,"µ","ז");
+        sNewText = replaceSubstring(sNewText,"τ","ח");
+        sNewText = replaceSubstring(sNewText,"Φ","ט");
+        sNewText = replaceSubstring(sNewText,"Θ","י");
+        sNewText = replaceSubstring(sNewText,"δ","כ");
+        sNewText = replaceSubstring(sNewText,"Ω","ך");
+        sNewText = replaceSubstring(sNewText,"∞","ל");
+        sNewText = replaceSubstring(sNewText,"ε","מ");
+        sNewText = replaceSubstring(sNewText,"φ","ם");
+        sNewText = replaceSubstring(sNewText,"≡","נ");
+        sNewText = replaceSubstring(sNewText,"∩","ן");
+        sNewText = replaceSubstring(sNewText,"±","ס");
+        sNewText = replaceSubstring(sNewText,"≥","ע");
+        sNewText = replaceSubstring(sNewText,"⌠","פ");
+        sNewText = replaceSubstring(sNewText,"≤","ף");
+        sNewText = replaceSubstring(sNewText,"÷","צ");
+        sNewText = replaceSubstring(sNewText,"⌡","ץ");
+        sNewText = replaceSubstring(sNewText,"≈","ק");
+        sNewText = replaceSubstring(sNewText,"°","ר");
+        sNewText = replaceSubstring(sNewText,"∙","ש");
+        sNewText = replaceSubstring(sNewText,"·","ת");
+
+        document.getElementById("result").innerHTML =
+            "<b>" + sNewText + "</b>";
+    }
+</script>
+Gibberish, like ùëçúé ìëúåá
+</br>
+<input type="text" id="text" value="">
+<button onclick="hebTx()">Translate</button>
+<p id="result"></p>
+</body>
+</html>
